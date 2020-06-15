@@ -1,0 +1,7 @@
+.phpcoding{width: 100%;margin: 0 auto;background: #ddd;}
+.headeroption,.footeroption{background: #333;color: #fff;text-align: center;}
+.maincontent{min-height: 400px;padding: 20px;}
+.headeroption h2,.footeroption h2{margin: 0;padding: 20px;}
+.title{margin-left: 226Px;font-size: larger;font-family: initial;}
+.item_title{margin-left: 20Px;font-size: 18px;font-family: initial;font-weight: bold;}
+.item{margin-left: 20Px;width: 230px;}
