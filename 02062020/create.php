@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My First Php Class</title>
+	<title>My Last Php Class</title>
 	<!-- CSS only -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 	<link rel="stylesheet" type="text/css" href="css/style.css">
