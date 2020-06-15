@@ -3,10 +3,13 @@
 
 	session_start();
 	$_SESSION['status'] = 0;
-
 	$conn = mysqli_connect("localhost", "root","","orcl") or die("Error Encountered.");
+
 	$query = "SELECT  * from fluttertable";
 	$res = mysqli_query($conn, $query);
+
+	$querydesignation = "SELECT  * from designation";
+	$resdesignation = mysqli_query($conn, $querydesignation);
 
 ?>
 <!-- End -->
@@ -17,14 +20,7 @@
 	<title>My Second Php Class</title>
 	<!-- CSS only -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
-	<style>
-		.phpcoding{width: 100%;margin: 0 auto;background: #ddd;}
-		.headeroption,.footeroption{background: #333;color: #fff;text-align: center;}
-		.maincontent{min-height: 400px;padding: 20px;}
-		.headeroption h2,.footeroption h2{margin: 0;padding: 20px;}
-		.title{margin-left: 25Px;font-size: larger;padding: 20px;font-family: initial;}
-		.table td, .table th {padding: .75rem;border: 2px solid #572b8c;}		
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
   <body>
 	<div class="phpcoding">
@@ -74,13 +70,44 @@
 								echo "<td>$password</td>"; ?>
 								<td><a href = "update.php?id=<?php echo $empno; ?>&status=<?php echo '1'; ?>" class = 'btn btn-info'>Update</a>
 									</td>
-								<td><a href = "delete.php?id=<?php echo $empno; ?>" class = 'btn btn-info'>Delete</a>
+								<td><a href = "delete.php?id=<?php echo $empno; ?>" class = ' alertt btn btn-info'>Delete</a>
 									</td><?php
 								echo "</tr>";
 							}				
 						 ?>
 					  </tbody>
 			</table>
+
+			<!-- Table End --> 
+		</div>
+		<div>
+			<!-- Table Start -->
+			<table class="table table-striped">
+					<h2 ><u class="title">Designation Information Records Are Given Below:</u></h2>
+					  <thead>
+					    	<tr>
+							      <th scope="col">Designation ID:</th>
+							      <th scope="col">Designation Name:</th>
+							      <!-- <th scope="col">Action</th> -->
+					    	</tr>
+					  </thead>
+					  <tbody scope="col">
+					  	<?php 
+							while ($rows = mysqli_fetch_array($resdesignation)) {
+									$desno = $rows[0];
+									$des_name  = $rows[1];
+
+								echo "<tr>";
+								echo "<td>$desno</td>";
+								echo "<td>$des_name</td>"; ?>
+<!-- 								<td><a href = "delete.php?des=<?php echo $desno; ?>" class = ' alertt btn btn-info'>Delete</a>
+									</td> --><?php
+								echo "</tr>";
+							}				
+						 ?>
+					  </tbody>
+			</table>
+
 			<!-- Table End --> 
 		</div>
 		</section>
@@ -94,6 +121,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+<script>
+	
+	$('.alertt').click(function() {
+		alert('Are You Sure? ');
+	});
 
+</script>
 </body>
 </html>

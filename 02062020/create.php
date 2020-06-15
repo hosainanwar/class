@@ -1,7 +1,6 @@
 
 <!-- Database Connection -->
 <?php
-	session_start();
 	$conn = mysqli_connect("localhost", "root","","orcl") or die("Error Encountered.");
 	$query = "SELECT  * from emp_info";
 	$res = mysqli_query($conn, $query);
@@ -13,23 +12,6 @@
 	while ($rows = mysqli_fetch_array($resfordesignation)) {
 		$designation .= "<option value= $rows[0] >$rows[1]</option>";
 	}
-
-	$queryforid = "SELECT * from fluttertable";
-	$resforid = mysqli_query($conn, $queryforid);
-
-	$id = "<option value= ''>Select Id and Name</option>";
-	while ($rows = mysqli_fetch_array($resforid)) {
-		$name = $rows[1];
-		$id .= "<option value= '$rows[0]' >$rows[0] => $name</option>";
-	}
-
-
-/*	if ($_SESSION['status']) {*/
-		$singleid = $_GET['id'];
-		$queryforsingleupdate = "SELECT * from fluttertable where id = '$singleid' ";
-		$resforsingleupdate = mysqli_query($conn, $queryforsingleupdate);
-
-	
 
 ?>
 <!-- End -->
@@ -48,41 +30,17 @@
 			<h2>Confidence Software Limited</h2>
 		</section>
 		<section class="maincontent">
-			
-		<?php require 'nav.php'; ?>
+			<?php require 'nav.php'; ?>
 
 
 <h2><u class="title">Employee Information</u></h2>
-	<form method="post" action="updatecheck.php">
+	<form method="post" action="insert.php">
 <table>
-		<?php
-		while ($rows = mysqli_fetch_array($resforsingleupdate)) {
-			$id = $rows[0];
-			$name = $rows[1];
-			$idandname = '<option value= '.$id.' >'."$id".' => '."$name".'</option>';
-			$email = $rows[2];
-			$pass = $rows[3];
-			$desig = $rows[4];
-			$des = '<option value= '.$desig.' >'.$desig.'</option>';
-		?>
-		<tr>
-			<th>Employee ID </th>
-			<td> </td>
-			<td>
-				<select name="id" class="form-control">
-					<?php echo $idandname; ?>
-				</select>
-
-			</td>
-		</tr>
-		<tr>
-			<td></td>
-		</tr>
 
 		<tr>
 			<th>Employee Name </th>
 			<td> </td>
-			<td><input type="text" class="form-control" class="item" required="" name="emp_name" value="<?php echo $name; ?>"></td>
+			<td><input type="text" class="form-control" class="item" required="" name="emp_name"></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -103,7 +61,7 @@
 		<tr>
 			<th>Email Address </th>
 			<td> </td>
-			<td><input type="email" class="form-control" name="email" value="<?php echo $email; ?>"></td>
+			<td><input type="email" class="form-control" name="email"></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -111,15 +69,15 @@
 		<tr>
 			<th>Password </th>
 			<td> </td>
-			<td><input type="Password"  class="form-control" name="password" value="<?php echo $pass; ?>"></td>
+			<td><input type="Password"  class="form-control" name="password"></td>
 		</tr>
 		<tr>
 			<td></td>
 		</tr>
-	<?php } ?>
+
 
 </table>
-	<input type="submit" class="btn btn-primary" name="update" value="Update">
+	<input type="submit" class="btn btn-primary" name="insert" value="Save">
 	</form>
 <!-- <form method="post" action="insert.php">
 	<h4 class="item_title">Employee ID No:<input type="text" class="item" required="" name="emp_no"><br><br></h4>
